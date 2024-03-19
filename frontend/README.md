@@ -8,9 +8,10 @@ Node.js
 
 ## Technology
 
-1. Vue (With Vue Router and Pinia)
-2. TypeScript
-3. SASS
+1. [Vue](https://vuejs.org/) (With Vue Router and Pinia)
+2. [TypeScript](https://www.typescriptlang.org/)
+3. [SASS](https://sass-lang.com/)
+4. [Vite](https://vitejs.dev/)
 
 ## Recommended IDE Setup
 
