@@ -1,6 +1,16 @@
 # frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+This folder contains files for shopDADE frontend
+
+## Requirements
+
+Node.js
+
+## Technology
+
+1. Vue (With Vue Router and Pinia)
+2. TypeScript
+3. SASS
 
 ## Recommended IDE Setup
 
