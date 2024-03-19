@@ -37,6 +37,6 @@ cat README.md
 This project was developed by:
 
 1. **Daniel Ochoja** (danielochoja@gmail.com)
-1. niyiolagbegi@gmail.com
+1. **Adeniyi Olateru-Olagbegi** (niyiolagbegi@gmail.com)
 1. denisstillwaters@gmail.com
 1. **Emmanuel Oluwaseun Falope** (falopeoluwaseun2@gmail.com)

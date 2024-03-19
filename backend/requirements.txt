@@ -1,0 +1,7 @@
+Flask>=2.0.1
+Flask-RESTful
+Flask-WTF
+Flask-Login
+Flask-MongoEngine
+Flask-JWT-Extended<2.0
+pymongo
