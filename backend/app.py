@@ -4,6 +4,7 @@ from database import init_db
 from routes.auth import auth_bp
 from routes.user import user_bp
 from routes.product import product_bp
+from models.user import User
 
 app = Flask(__name__)
 
