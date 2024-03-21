@@ -41,11 +41,11 @@ import { Icon } from '@iconify/vue'
   </footer>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 footer {
   color: #fff;
   background: $primary-color;
-  padding: 20px 0 8px 20px;
+  padding: 20px 0 8px 0;
   font-weight: 300;
 
   .items {
