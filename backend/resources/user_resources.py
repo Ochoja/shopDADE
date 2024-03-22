@@ -18,11 +18,11 @@ class UserListResource(Resource):
     def post(self):
         data = request.get_json()
         existing_email_user = User.find_by_email(data['email'])
-        existing_username_user = User.find_by_username(data['username'])
+        existing_fullname_user = User.find_by_fullname(data['fullname'])
         if existing_email_user:
             return {'error': 'Email already exists'}, 400
-        if existing_username_user:
-            return {'error': 'Username already exists'}, 400
+        if existing_fullname_user:
+            return {'error': 'fullname already exists'}, 400
         user = User(**data).save()
         return {'id': str(user.id)}, 201
 

@@ -8,22 +8,22 @@ auth_bp = Blueprint('auth', __name__)
 @auth_bp.route('/register', methods=['POST'])
 def register():
     data = request.json
-    username = data.get('username')
+    fullname = data.get('fullname')
     email = data.get('email')
     password = data.get('password')
     name = data.get('name')
     address = data.get('address')
     phone_number = data.get('phone_number')
 
-    # Check if username or email already exists
-    if User.find_by_email(email) or User.find_by_username(username):
-        return jsonify({'message': 'Username or email already exists'}), 400
+    # Check if fullname or email already exists
+    if User.find_by_email(email) or User.find_by_fullname(fullname):
+        return jsonify({'message': 'fullname or email already exists'}), 400
 
     # Hash the password before saving
     hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
 
     # Create a new user instance and save to the database
-    new_user = User(username=username, email=email, password=hashed_password, name=name, address=address, phone_number=phone_number)
+    new_user = User(fullname=fullname, email=email, password=hashed_password, name=name, address=address, phone_number=phone_number)
     new_user.save()
 
     return jsonify({'message': 'User created successfully'}), 201

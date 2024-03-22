@@ -2,8 +2,8 @@ from database import mongo
 from bson.objectid import ObjectId
 
 class User:
-    def __init__(self, username, email, password, name, address=None, phone_number=None):
-        self.username = username
+    def __init__(self, fullname, email, password, name, address=None, phone_number=None):
+        self.fullname = fullname
         self.email = email
         self.password = password
         self.name = name
@@ -12,7 +12,7 @@ class User:
 
     def save(self):
         user_data = {
-            'username': self.username,
+            'fullname': self.fullname,
             'email': self.email,
             'password': self.password,
             'name': self.name,
@@ -26,8 +26,8 @@ class User:
         return mongo.db.users.find_one({'email': email})
 
     @staticmethod
-    def find_by_username(username):
-        return mongo.db.users.find_one({'username': username})
+    def find_by_fullname(fullname):
+        return mongo.db.users.find_one({'fullname': fullname})
 
     @staticmethod
     def find_by_id(user_id):
