@@ -1,5 +1,65 @@
 <script setup>
 import Button from '../components/TheButton.vue'
+import Product from '../components/ProductCard.vue'
+
+const products = [
+  {
+    id: 1,
+    product_name: 'Winter Jacket',
+    price: 55.99,
+    image:
+      'https://th.bing.com/th/id/R.3e7489a038bb6747ed2a4e7e6c0c8560?rik=V4nlkcvS7y5qrw&pid=ImgRaw&r=0'
+  },
+  {
+    id: 2,
+    product_name: 'Winter Jacket',
+    price: 55.99,
+    image:
+      'https://th.bing.com/th/id/R.3e7489a038bb6747ed2a4e7e6c0c8560?rik=V4nlkcvS7y5qrw&pid=ImgRaw&r=0'
+  },
+  {
+    id: 3,
+    product_name: 'Winter Jacket',
+    price: 55.99,
+    image:
+      'https://th.bing.com/th/id/R.3e7489a038bb6747ed2a4e7e6c0c8560?rik=V4nlkcvS7y5qrw&pid=ImgRaw&r=0'
+  },
+  {
+    id: 4,
+    product_name: 'Winter Jacket',
+    price: 55.99,
+    image:
+      'https://th.bing.com/th/id/R.3e7489a038bb6747ed2a4e7e6c0c8560?rik=V4nlkcvS7y5qrw&pid=ImgRaw&r=0'
+  },
+  {
+    id: 5,
+    product_name: 'Winter Jacket',
+    price: 55.99,
+    image:
+      'https://th.bing.com/th/id/R.3e7489a038bb6747ed2a4e7e6c0c8560?rik=V4nlkcvS7y5qrw&pid=ImgRaw&r=0'
+  },
+  {
+    id: 6,
+    product_name: 'Winter Jacket',
+    price: 55.99,
+    image:
+      'https://th.bing.com/th/id/R.3e7489a038bb6747ed2a4e7e6c0c8560?rik=V4nlkcvS7y5qrw&pid=ImgRaw&r=0'
+  },
+  {
+    id: 7,
+    product_name: 'Winter Jacket',
+    price: 55.99,
+    image:
+      'https://th.bing.com/th/id/R.3e7489a038bb6747ed2a4e7e6c0c8560?rik=V4nlkcvS7y5qrw&pid=ImgRaw&r=0'
+  },
+  {
+    id: 8,
+    product_name: 'Winter Jacket',
+    price: 55.99,
+    image:
+      'https://th.bing.com/th/id/R.3e7489a038bb6747ed2a4e7e6c0c8560?rik=V4nlkcvS7y5qrw&pid=ImgRaw&r=0'
+  }
+]
 </script>
 
 <template>
@@ -23,7 +83,15 @@ import Button from '../components/TheButton.vue'
         Introducing our latest arrivals, meticulously curated to elevate your wardrobe with fresh
         sophistication and style
       </p>
+
+      <section class="products">
+        <Product v-for="product in products" :key="product.id" :product="product"></Product>
+      </section>
+
+      <Button type="wide">See All</Button>
     </section>
+
+    <section class="collection"></section>
   </main>
 </template>
 
@@ -45,7 +113,7 @@ main {
     background: url('../assets/hero.png') center no-repeat;
     background-size: cover;
     border-radius: 10px;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
 
     .content {
       width: 55%;
@@ -64,10 +132,28 @@ main {
 
   .featured {
     text-align: center;
+    margin-bottom: 80px;
 
     p {
       width: 50%;
       margin: auto;
+    }
+  }
+
+  .products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
+    grid-auto-rows: auto;
+    column-gap: 25px;
+    row-gap: 28px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
+  @media screen and (max-width: 650px) {
+    .products {
+      grid-template-columns: repeat(auto-fit, minmax(13em, 1fr));
     }
   }
 }
