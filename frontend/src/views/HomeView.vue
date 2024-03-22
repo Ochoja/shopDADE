@@ -90,6 +90,8 @@ const products = [
 
       <Button type="wide">See All</Button>
     </section>
+
+    <section class="collection"></section>
   </main>
 </template>
 
@@ -111,7 +113,7 @@ main {
     background: url('../assets/hero.png') center no-repeat;
     background-size: cover;
     border-radius: 10px;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
 
     .content {
       width: 55%;
@@ -130,6 +132,7 @@ main {
 
   .featured {
     text-align: center;
+    margin-bottom: 80px;
 
     p {
       width: 50%;
@@ -145,6 +148,7 @@ main {
     row-gap: 28px;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 30px;
   }
 
   @media screen and (max-width: 650px) {
