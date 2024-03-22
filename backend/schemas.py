@@ -2,12 +2,13 @@ from marshmallow import Schema, fields
 
 class ProductSchema(Schema):
     _id = fields.Str(required=True)
-    title = fields.Str(required=True)
-    description = fields.Str(required=True)
+    name = fields.Str(required=True)
     price = fields.Float(required=True)
-    stock_quantity = fields.Int(required=True)
+    old_price = fields.Float()
+    description = fields.Str(required=True)
     category = fields.Str(required=True)
     image_url = fields.Str(required=True)
+    sizes = fields.List(fields.Str())  # Assuming sizes is a list of strings
 
 class OrderItemSchema(Schema):
     product = fields.Nested(ProductSchema, required=True)
