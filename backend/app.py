@@ -4,6 +4,7 @@ from database import init_db
 from routes.auth import auth_bp
 from routes.user import user_bp
 from routes.product import product_bp
+from routes.order import order_bp
 from routes.category import category_bp
 from models.user import User
 
@@ -26,6 +27,7 @@ def load_user(user_id):
 app.register_blueprint(auth_bp)
 app.register_blueprint(user_bp)
 app.register_blueprint(product_bp)
+app.register_blueprint(order_bp)
 app.register_blueprint(category_bp)
 
 if __name__ == '__main__':
