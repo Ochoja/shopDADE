@@ -1,6 +1,7 @@
 <script setup>
 import Button from '../components/TheButton.vue'
 import Product from '../components/ProductCard.vue'
+import { RouterLink } from 'vue-router'
 
 const products = [
   {
@@ -91,7 +92,60 @@ const products = [
       <Button type="wide">See All</Button>
     </section>
 
-    <section class="collection"></section>
+    <section class="collection">
+      <h1>Our Collections</h1>
+
+      <div class="categories">
+        <RouterLink
+          to="/"
+          class="regular"
+          style="
+            background-image: url('https://ik.imagekit.io/Ochoja01/shopDADE/footwear.png?updatedAt=1711169406807');
+          "
+          >Footwears</RouterLink
+        >
+        <RouterLink
+          to="/"
+          class="long"
+          style="
+            background-image: url('https://ik.imagekit.io/Ochoja01/shopDADE/suit.png?updatedAt=1711169407259');
+          "
+          >Suits</RouterLink
+        >
+        <RouterLink
+          to="/"
+          class="regular"
+          style="
+            background-image: url('https://ik.imagekit.io/Ochoja01/shopDADE/accesories.png?updatedAt=1711169406591');
+          "
+          >Accesories</RouterLink
+        >
+        <RouterLink
+          to="/"
+          class="long"
+          style="
+            background-image: url('https://ik.imagekit.io/Ochoja01/shopDADE/tops.png?updatedAt=1711169407303');
+          "
+          >Tops</RouterLink
+        >
+        <RouterLink
+          to="/"
+          class="long"
+          style="
+            background-image: url('https://ik.imagekit.io/Ochoja01/shopDADE/pants.png?updatedAt=1711169407202');
+          "
+          >Bottoms</RouterLink
+        >
+        <RouterLink
+          to="/"
+          class="regular"
+          style="
+            background-image: url('https://ik.imagekit.io/Ochoja01/shopDADE/jacket.png?updatedAt=1711169406932');
+          "
+          >Jackets</RouterLink
+        >
+      </div>
+    </section>
   </main>
 </template>
 
@@ -154,6 +208,46 @@ main {
   @media screen and (max-width: 650px) {
     .products {
       grid-template-columns: repeat(auto-fit, minmax(13em, 1fr));
+    }
+  }
+
+  .collection {
+    text-align: center;
+    margin-bottom: 100px;
+
+    h1 {
+      margin-bottom: 10px;
+    }
+  }
+
+  .categories {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: auto;
+    height: 90vh;
+    gap: 12px;
+
+    .regular,
+    .long {
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.8em;
+      font-weight: 600;
+    }
+
+    .long {
+      grid-row: span 5;
+    }
+
+    .regular {
+      grid-row: span 3;
     }
   }
 }
