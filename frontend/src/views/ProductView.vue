@@ -89,8 +89,12 @@ const selectSize = (index) => {
         </div>
 
         <div class="action-btns">
-          <Button icon="material-symbols:shopping-bag-outline">Add to Cart</Button>
-          <Button icon="mdi:heart-outline">Add to Wishlist</Button>
+          <div>
+            <Button icon="material-symbols:shopping-bag-outline" size="big"> Add to Cart </Button>
+          </div>
+          <div>
+            <Button icon="mdi:heart-outline" size="big" type="secondary">Add to Wishlist</Button>
+          </div>
         </div>
       </div>
     </div>
@@ -209,6 +213,14 @@ img {
           font-size: 1.7em;
           font-weight: 500;
         }
+      }
+    }
+
+    .action-btns {
+      margin-top: 24px;
+
+      div {
+        margin-bottom: 10px;
       }
     }
   }

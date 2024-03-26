@@ -1,22 +1,46 @@
 <script setup>
 import { Icon } from '@iconify/vue'
 defineProps({
-  type: String,
-  icon: String
+  size: String,
+  icon: String,
+  type: String
 })
 </script>
 
 <template>
-  <button v-if="type == `wide`" class="wide">
-    <Icon v-if="icon" :icon="icon"></Icon>
+  <!-- Wide Secondary -->
+  <button v-if="size == 'wide' && type == 'secondary'" class="wide secondary">
+    <Icon v-if="icon" :icon="icon" class="icon"></Icon>
     <slot>Button</slot>
   </button>
-  <button v-else-if="type == `big`" class="big">
-    <Icon v-if="icon" :icon="icon"></Icon>
+
+  <!-- Wide Primary -->
+  <button v-else-if="size == `wide`" class="wide">
+    <Icon v-if="icon" :icon="icon" class="icon"></Icon>
     <slot>Button</slot>
   </button>
+
+  <!-- Big Secondary -->
+  <button v-else-if="size == 'big' && type == 'secondary'" class="big secondary">
+    <Icon v-if="icon" :icon="icon" class="icon-big"></Icon>
+    <slot>Button</slot>
+  </button>
+
+  <!-- Big Primary -->
+  <button v-else-if="size == `big`" class="big">
+    <Icon v-if="icon" :icon="icon" class="icon-big"></Icon>
+    <slot>Button</slot>
+  </button>
+
+  <!-- Regular Secondary -->
+  <button v-else-if="size == 'secondary'" class="secondary">
+    <Icon v-if="icon" :icon="icon" class="icon"></Icon>
+    <slot>Button</slot>
+  </button>
+
+  <!-- Regular Primary -->
   <button v-else>
-    <Icon v-if="icon" :icon="icon"></Icon>
+    <Icon v-if="icon" :icon="icon" class="icon"></Icon>
     <slot>Button</slot>
   </button>
 </template>
@@ -29,10 +53,34 @@ button {
   color: #fff;
   background: $primary-color;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.secondary {
+  border: 1px solid $primary-color;
+  background: none;
+  color: $primary-color;
 }
 
 .wide {
   padding: 8px 50px;
   font-weight: 600;
+}
+
+.big {
+  font-size: 1.3em;
+  min-width: 20em;
+  padding: 12px 0;
+}
+
+.secondary.big {
+  border: 2px solid $primary-color;
+}
+
+.icon-big {
+  font-size: 1.4em;
 }
 </style>

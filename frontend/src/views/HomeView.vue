@@ -89,7 +89,7 @@ const products = [
         <Product v-for="product in products" :key="product.id" :product="product"></Product>
       </section>
 
-      <Button type="wide">See All</Button>
+      <Button size="wide">See All</Button>
     </section>
 
     <section class="collection">
