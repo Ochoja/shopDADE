@@ -195,20 +195,8 @@ main {
   }
 
   .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
-    grid-auto-rows: auto;
-    column-gap: 25px;
-    row-gap: 28px;
-    flex-wrap: wrap;
-    justify-content: center;
+    @include product-grid;
     margin-bottom: 30px;
-  }
-
-  @media screen and (max-width: 650px) {
-    .products {
-      grid-template-columns: repeat(auto-fit, minmax(13em, 1fr));
-    }
   }
 
   .collection {

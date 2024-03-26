@@ -2,17 +2,51 @@
 import { ref } from 'vue'
 import { Icon } from '@iconify/vue/dist/iconify.js'
 import Button from '@/components/TheButton.vue'
+import Product from '@/components/ProductCard.vue'
 
 defineProps({
   id: String
 })
 
+/* Product images and sizes */
 const imgs = [
   'https://th.bing.com/th/id/R.3e7489a038bb6747ed2a4e7e6c0c8560?rik=V4nlkcvS7y5qrw&pid=ImgRaw&r=0',
   'https://th.bing.com/th/id/R.3e7489a038bb6747ed2a4e7e6c0c8560?rik=V4nlkcvS7y5qrw&pid=ImgRaw&r=0',
   'https://th.bing.com/th/id/R.3e7489a038bb6747ed2a4e7e6c0c8560?rik=V4nlkcvS7y5qrw&pid=ImgRaw&r=0'
 ]
 const sizes = [25, 26, 27, 28]
+
+/* Suggested Images and sizes*/
+const products = [
+  {
+    id: 1,
+    product_name: 'Winter Jacket',
+    price: 55.99,
+    image:
+      'https://th.bing.com/th/id/R.3e7489a038bb6747ed2a4e7e6c0c8560?rik=V4nlkcvS7y5qrw&pid=ImgRaw&r=0'
+  },
+  {
+    id: 2,
+    product_name: 'Winter Jacket',
+    price: 55.99,
+    image:
+      'https://th.bing.com/th/id/R.3e7489a038bb6747ed2a4e7e6c0c8560?rik=V4nlkcvS7y5qrw&pid=ImgRaw&r=0'
+  },
+  {
+    id: 3,
+    product_name: 'Winter Jacket',
+    price: 55.99,
+    image:
+      'https://th.bing.com/th/id/R.3e7489a038bb6747ed2a4e7e6c0c8560?rik=V4nlkcvS7y5qrw&pid=ImgRaw&r=0'
+  },
+  {
+    id: 4,
+    product_name: 'Winter Jacket',
+    price: 55.99,
+    image:
+      'https://th.bing.com/th/id/R.3e7489a038bb6747ed2a4e7e6c0c8560?rik=V4nlkcvS7y5qrw&pid=ImgRaw&r=0'
+  }
+]
 
 /* Change quantity */
 const quantity = ref(1)
@@ -40,7 +74,7 @@ const selectSize = (index) => {
 
 <template>
   <main>
-    <div class="product">
+    <div class="product-info">
       <div class="images">
         <div class="main-img">
           <img :src="imgs[0]" alt="" />
@@ -101,6 +135,10 @@ const selectSize = (index) => {
 
     <div class="suggestion">
       <h1>You May Also Like</h1>
+
+      <div class="items">
+        <Product v-for="product in products" :key="product.id" :product="product"></Product>
+      </div>
     </div>
   </main>
 </template>
@@ -114,7 +152,7 @@ img {
   border-radius: 10px;
 }
 
-.product {
+.product-info {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
@@ -217,12 +255,26 @@ img {
     }
 
     .action-btns {
-      margin-top: 24px;
+      margin-top: 30px;
 
       div {
         margin-bottom: 10px;
       }
     }
+  }
+}
+
+.suggestion {
+  margin-top: 80px;
+  margin-bottom: 120px;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .items {
+    @include product-grid;
   }
 }
 </style>
