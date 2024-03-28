@@ -14,5 +14,9 @@ import Navigation from './components/TheNavigation.vue'
 .logo {
   font-family: 'Rammetto One';
   font-size: 1.5em;
+
+  a {
+    text-decoration: none;
+  }
 }
 </style>
