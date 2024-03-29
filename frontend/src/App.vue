@@ -1,11 +1,23 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import { computed } from 'vue'
+import { RouterView, useRoute } from 'vue-router'
 import Footer from './components/TheFooter.vue'
 import Navigation from './components/TheNavigation.vue'
+
+const route = useRoute()
+
+// hide navigation in auth page
+const showNav = computed(() => {
+  if (route.path.includes('/auth/')) {
+    return false
+  } else {
+    return true
+  }
+})
 </script>
 
 <template>
-  <Navigation></Navigation>
+  <Navigation v-if="showNav"></Navigation>
   <RouterView />
   <Footer></Footer>
 </template>

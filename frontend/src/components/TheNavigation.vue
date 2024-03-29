@@ -42,16 +42,17 @@ const logInMenu = ref(false)
         <div><Icon icon="bxs:down-arrow" /></div>
       </div>
     </div>
-  </nav>
 
-  <div v-show="logInMenu" class="login-menu">
-    <RouterLink to="/auth/login">Login</RouterLink>
-    <RouterLink to="/auth/register">Register</RouterLink>
-  </div>
+    <div v-show="logInMenu" class="login-menu">
+      <RouterLink to="/auth/login">Login</RouterLink>
+      <RouterLink to="/auth/register">Register</RouterLink>
+    </div>
+  </nav>
 </template>
 
 <style lang="scss" scoped>
 nav {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -146,6 +147,31 @@ nav {
         }
       }
     }
+  }
+}
+
+.login-menu {
+  position: absolute;
+  right: 0;
+  bottom: -70px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 15px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  background: #fff;
+
+  a {
+    text-decoration: none;
+    color: #000;
+    width: 5em;
+    text-align: center;
+  }
+
+  a:hover {
+    color: $primary-color;
+    font-weight: 600;
   }
 }
 </style>
