@@ -24,10 +24,10 @@ const logInMenu = ref(false)
       </div>
     </div>
     <div class="user">
-      <div class="cart">
+      <RouterLink to="/25/cart" class="cart">
         <div class="text">Cart</div>
         <div class="icon"><Icon icon="mdi:cart"></Icon></div>
-      </div>
+      </RouterLink>
       <div class="profile" v-if="isLoggedIn">
         <div class="user">Daniel Ochoja</div>
         <div class="img">
@@ -124,6 +124,8 @@ nav {
 
     .cart,
     .profile {
+      text-decoration: none;
+      color: #000;
       display: flex;
       align-items: center;
       gap: 5px;

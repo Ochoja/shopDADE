@@ -18,18 +18,18 @@ defineProps({
         <h1>Create an Account</h1>
         <p>Welcome back! Enter your details</p>
 
-        <form action="">
-          <label for="">Full Name*</label>
-          <input type="e-mail" placeholder="John Doe" required />
+        <form>
+          <label for="name">Full Name*</label>
+          <input type="e-mail" placeholder="John Doe" id="name" required />
 
-          <label for="">Full Name*</label>
-          <input type="e-mail" placeholder="John Doe" required />
+          <label for="mail">Email*</label>
+          <input type="e-mail" id="mail" placeholder="John Doe" required />
 
-          <label for="">Password*</label>
-          <input type="password" placeholder="Enter your password" required />
+          <label for="password">Password*</label>
+          <input type="password" id="password" placeholder="Enter your password" required />
 
-          <label for="">Retype Password*</label>
-          <input type="e-mail" placeholder="Enter your password" required />
+          <label for="confirm-password">Retype Password*</label>
+          <input type="e-mail" id="confirm-password" placeholder="Enter your password" required />
         </form>
 
         <div class="action">
@@ -42,12 +42,12 @@ defineProps({
         <h1>Sign In</h1>
         <p>Welcome back! Enter your details</p>
 
-        <form action="">
-          <label for="">Email</label>
-          <input type="e-mail" placeholder="Enter your email" required />
+        <form>
+          <label for="mail">Email</label>
+          <input type="e-mail" id="mail" placeholder="Enter your email" required />
 
-          <label for="">Password</label>
-          <input type="password" placeholder="Enter your password" required />
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required />
         </form>
 
         <div class="action">
@@ -134,7 +134,8 @@ main {
 
   .img {
     background: url('https://res.cloudinary.com/dmnzisj8k/image/upload/v1711652773/shopDADE/q4r2ucsvmz77veyc06nw.png')
-      center no-repeat;
+      no-repeat;
+    background-position: center;
     background-size: cover;
   }
 }
