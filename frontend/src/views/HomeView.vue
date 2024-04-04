@@ -190,7 +190,7 @@ main {
 
     p {
       width: 50%;
-      margin: auto;
+      margin: 0 auto 8px auto;
     }
   }
 

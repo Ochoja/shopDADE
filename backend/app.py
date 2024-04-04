@@ -7,21 +7,30 @@ from routes.product import product_bp
 from routes.order import order_bp
 from routes.category import category_bp
 from models.user import User
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
 
 # Initialize the database
-init_db(app)
+load_dotenv()  # load environment variables
+user_name = os.getenv('DB_USERNAME')
+password = os.getenv('DB_PASSWORD')
+database_uri = f'mongodb+srv://{user_name}:{password}@cluster0.9gfsau1.mongodb.net/shopDADE?retryWrites=true&w=majority&appName=Cluster0'
+init_db(app, database_uri)
 
 # Initialize Flask-Login
 login_manager = LoginManager()
 login_manager.init_app(app)
 
 # Define the user_loader function
+
+
 @login_manager.user_loader
 def load_user(user_id):
     # Load user from the database using the user ID
     return User.query.get(int(user_id))
+
 
 # Import blueprints and register them
 app.register_blueprint(auth_bp)

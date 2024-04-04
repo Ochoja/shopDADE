@@ -72,7 +72,7 @@ button {
 }
 
 .big {
-  font-size: 1.3em;
+  font-size: 1.2em;
   min-width: 20em;
   padding: 12px 0;
 }

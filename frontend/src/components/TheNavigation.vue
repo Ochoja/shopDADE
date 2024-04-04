@@ -1,10 +1,17 @@
 <script setup>
+import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
+import { RouterLink } from 'vue-router'
+
+const isLoggedIn = ref(false)
+const logInMenu = ref(false)
 </script>
 
 <template>
   <nav>
-    <div class="logo">shopDADE</div>
+    <div class="logo">
+      <RouterLink to="/">shopDADE</RouterLink>
+    </div>
     <div class="search">
       <div class="category">
         <div class="name">All Category <Icon icon="raphael:arrowdown"></Icon></div>
@@ -17,28 +24,47 @@ import { Icon } from '@iconify/vue'
       </div>
     </div>
     <div class="user">
-      <div class="cart">
+      <RouterLink to="/25/cart" class="cart">
         <div class="text">Cart</div>
         <div class="icon"><Icon icon="mdi:cart"></Icon></div>
-      </div>
-      <div>
+      </RouterLink>
+      <div class="profile" v-if="isLoggedIn">
         <div class="user">Daniel Ochoja</div>
-        <div class="image">
-          <img src="" alt="" />
+        <div class="img">
+          <img
+            src="https://th.bing.com/th/id/R.8b167af653c2399dd93b952a48740620?rik=%2fIwzk0n3LnH7dA&pid=ImgRaw&r=0"
+            alt="user-image"
+          />
         </div>
       </div>
+      <div class="profile" v-else @click="logInMenu = !logInMenu">
+        <div class="text">Login/Register</div>
+        <div><Icon icon="bxs:down-arrow" /></div>
+      </div>
+    </div>
+
+    <div v-show="logInMenu" class="login-menu">
+      <RouterLink to="/auth/login">Login</RouterLink>
+      <RouterLink to="/auth/register">Register</RouterLink>
     </div>
   </nav>
 </template>
 
 <style lang="scss" scoped>
 nav {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   @include grid-width;
   margin-top: 20px;
   margin-bottom: 20px;
+
+  .logo {
+    a {
+      color: $primary-color;
+    }
+  }
 
   .search {
     display: flex;
@@ -93,18 +119,61 @@ nav {
 
   .user {
     display: flex;
-    gap: 16px;
+    gap: 25px;
     font-weight: 700;
 
-    .cart {
+    .cart,
+    .profile {
+      text-decoration: none;
+      color: #000;
       display: flex;
       align-items: center;
       gap: 5px;
+      cursor: pointer;
 
       .icon {
         font-size: 1.8em;
       }
+
+      .img {
+        height: 2.5em;
+        width: 2.5em;
+        border-radius: 50%;
+        position: relative;
+        overflow: hidden;
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
     }
+  }
+}
+
+.login-menu {
+  position: absolute;
+  right: 0;
+  bottom: -70px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 15px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  background: #fff;
+
+  a {
+    text-decoration: none;
+    color: #000;
+    width: 5em;
+    text-align: center;
+  }
+
+  a:hover {
+    color: $primary-color;
+    font-weight: 600;
   }
 }
 </style>
