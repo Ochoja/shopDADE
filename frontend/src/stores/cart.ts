@@ -9,22 +9,26 @@ interface item {
   quantity: number
   selected: boolean
   image: string
+  selected_size?: number
 }
 
 export const useCartStore = defineStore('cart', () => {
   const items: item[] = reactive([
     {
       id: 34,
-      name: 'Daniel',
+      name: 'Leather Jacket',
+      sizes: [6, 7, 8, 9],
+      selected_size: 6,
       price: 2332,
       quantity: 5,
-      selected: true,
+      selected: false,
       image:
         'https://th.bing.com/th/id/R.3e7489a038bb6747ed2a4e7e6c0c8560?rik=V4nlkcvS7y5qrw&pid=ImgRaw&r=0'
     },
+
     {
       id: 26,
-      name: 'Ochoja',
+      name: 'Gold Wrist Watch',
       price: 2332,
       quantity: 5,
       selected: false,

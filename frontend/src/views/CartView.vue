@@ -41,15 +41,22 @@ watch(items.value, () => {
     </div>
 
     <div class="cartItems">
-      <div v-for="(item, index) in items" :key="index">
+      <div v-for="(item, index) in items" :key="index" class="item">
         <input type="checkbox" v-model="item.selected" />
-        <div>
+        <div class="other">
           <div class="img">
             <img :src="item.image" alt="" />
           </div>
-          <div class="other">
-            <h2>{{ item.name }}</h2>
-            {{ item.selected }}
+          <div class="text">
+            <h2>${{ item.name }}</h2>
+            <div class="properties">
+              <select name="size" id="size" v-if="item.sizes">
+                <option value="size" v-for="(size, index) in item.sizes" :key="index">
+                  {{ size }}
+                </option>
+              </select>
+            </div>
+            <h2>${{ item.price }}</h2>
           </div>
         </div>
       </div>
@@ -64,6 +71,35 @@ main {
   .heading {
     display: flex;
     gap: 10px;
+  }
+
+  .cartItems {
+    .item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+
+      h2 {
+        font-weight: 600;
+      }
+
+      .other {
+        display: flex;
+        gap: 12px;
+
+        .text {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 20px 0;
+        }
+      }
+
+      img {
+        height: 200px;
+        width: 200px;
+      }
+    }
   }
 }
 </style>
