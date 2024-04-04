@@ -16,7 +16,7 @@ app = Flask(__name__)
 load_dotenv()  # load environment variables
 user_name = os.getenv('DB_USERNAME')
 password = os.getenv('DB_PASSWORD')
-database_uri = f'mongodb+srv://{user_name}:{password}@cluster0.9gfsau1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+database_uri = f'mongodb+srv://{user_name}:{password}@cluster0.9gfsau1.mongodb.net/shopDADE?retryWrites=true&w=majority&appName=Cluster0'
 init_db(app, database_uri)
 
 # Initialize Flask-Login
