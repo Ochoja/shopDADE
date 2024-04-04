@@ -157,6 +157,10 @@ img {
   grid-template-columns: 1fr 1fr;
   gap: 50px;
 
+  @media screen and (max-width: 760px) {
+    grid-template-columns: 1fr;
+  }
+
   .images {
     .main-img {
       height: 75vh;
@@ -176,6 +180,12 @@ img {
       img {
         height: 50px;
         width: 50px;
+      }
+    }
+
+    @media screen and (max-width: 650px) {
+      .main-img {
+        height: 50vh;
       }
     }
   }
