@@ -1,5 +1,6 @@
 from marshmallow import Schema, fields
 
+
 class ProductSchema(Schema):
     _id = fields.Str(required=True)
     name = fields.Str(required=True)
@@ -7,13 +8,15 @@ class ProductSchema(Schema):
     old_price = fields.Float()
     description = fields.Str(required=True)
     category = fields.Str(required=True)
-    image_url = fields.Str(required=True)
-    sizes = fields.List(fields.Str())  # Assuming sizes is a list of strings
+    image_url = fields.List(fields.Str(), required=True)  # List of image URLs
+    sizes = fields.List(fields.Str())  # List of sizes
+
 
 class OrderItemSchema(Schema):
     product = fields.Nested(ProductSchema, required=True)
     quantity = fields.Int(required=True)
     price = fields.Float(required=True)
+
 
 class OrderSchema(Schema):
     _id = fields.Str(required=True)
