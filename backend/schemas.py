@@ -9,7 +9,7 @@ class ProductSchema(Schema):
     description = fields.Str(required=True)
     category = fields.Str(required=True)
     image_url = fields.List(fields.Str(), required=True)  # List of image URLs
-    sizes = fields.List(fields.Str())  # List of sizes
+    
 
 
 class OrderItemSchema(Schema):
