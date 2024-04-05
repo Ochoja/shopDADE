@@ -1,16 +1,11 @@
 <script setup>
 import { ref } from 'vue'
 
-const props = defineProps({
-  featured: String,
-  category: String,
-  search: String
-})
-
 const title = ref('') // page title
-if (props.featured) {
-  title.value = 'Featured'
-}
+
+const params = $route.query
+
+console.log(params)
 </script>
 
 <template>

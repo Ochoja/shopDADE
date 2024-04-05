@@ -1,7 +1,9 @@
 <script setup>
 import Button from '../components/TheButton.vue'
 import Product from '../components/ProductCard.vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const products = [
   {
@@ -99,7 +101,7 @@ const products = [
 
       <div class="categories">
         <RouterLink
-          to="/"
+          to=""
           class="regular"
           style="
             background-image: url('https://ik.imagekit.io/Ochoja01/shopDADE/footwear.png?updatedAt=1711169406807');

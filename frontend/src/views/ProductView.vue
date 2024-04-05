@@ -1,12 +1,16 @@
 <script setup>
 import { ref } from 'vue'
 import { Icon } from '@iconify/vue/dist/iconify.js'
+import { useCartStore } from '@/stores/cart'
 import Button from '@/components/TheButton.vue'
 import Product from '@/components/ProductCard.vue'
 
 defineProps({
   id: String
 })
+
+const store = useCartStore()
+const { addToCart } = store
 
 /* Product images and sizes */
 const imgs = [

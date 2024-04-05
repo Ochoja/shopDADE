@@ -1,10 +1,63 @@
 <script setup>
+import { ref, computed, watchEffect } from 'vue'
 import Button from '@/components/TheButton.vue'
 import { RouterLink } from 'vue-router'
+import axios from 'axios'
+import { Icon } from '@iconify/vue/dist/iconify.js'
+
+const name = ref('')
+const mail = ref('')
+const password = ref('')
+const confirm_password = ref('')
+const match = computed(() => {
+  return !(password.value == confirm_password.value)
+})
+const checkFields = ref(true)
+const loading = ref(false)
+
+watchEffect(() => {
+  if (
+    name.value == '' ||
+    mail.value == '' ||
+    password.value == '' ||
+    confirm_password.value == ''
+  ) {
+    checkFields.value = true
+  } else {
+    checkFields.value = false
+  }
+})
 
 defineProps({
   type: String
 })
+
+async function createAccount() {
+  try {
+    console.log('Called API')
+    console.log(match.value, checkFields.value)
+    if (match.value || checkFields.value) return
+    else {
+      loading.value = true
+      const formData = {
+        name: name.value,
+        mail: mail.value,
+        password: password.value
+      }
+
+      const response = await axios.post('https://shopdade.onrender.com', formData)
+      console.log(response)
+      loading.value = false
+      name.value = ''
+      password.value = ''
+      confirm_password.value = ''
+      mail.value = ''
+    }
+  } catch (error) {
+    loading.value = false
+    console.log(error)
+  }
+}
 </script>
 
 <template>
@@ -20,20 +73,38 @@ defineProps({
 
         <form>
           <label for="name">Full Name*</label>
-          <input type="e-mail" placeholder="John Doe" id="name" required />
+          <input type="e-mail" placeholder="John Doe" id="name" required v-model="name" />
 
           <label for="mail">Email*</label>
-          <input type="e-mail" id="mail" placeholder="John Doe" required />
+          <input type="e-mail" id="mail" placeholder="John Doe" required v-model="mail" />
 
           <label for="password">Password*</label>
-          <input type="password" id="password" placeholder="Enter your password" required />
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            required
+            v-model="password"
+          />
 
           <label for="confirm-password">Retype Password*</label>
-          <input type="e-mail" id="confirm-password" placeholder="Enter your password" required />
+          <input
+            type="password"
+            id="confirm-password"
+            placeholder="Enter your password"
+            required
+            v-model="confirm_password"
+          />
+
+          <div v-if="match" class="warning">Passwords do not match</div>
+          <div v-if="checkFields" class="warning">Fill All fields</div>
         </form>
 
         <div class="action">
-          <Button size="big">Create Account</Button>
+          <Button size="big" @click="createAccount">
+            <Icon v-if="loading" class="icon" icon="eos-icons:three-dots-loading" />
+            <span v-else>Create Account</span>
+          </Button>
           <p>Already have an account? <RouterLink to="/auth/login">Sign In</RouterLink></p>
         </div>
       </div>
@@ -122,9 +193,20 @@ main {
       border: 2px solid $primary-color;
     }
 
+    .warning {
+      font-weight: 600;
+      color: $primary-color;
+      position: relative;
+      top: -6px;
+    }
+
     .action {
       text-align: center;
       margin-top: 20px;
+
+      .icon {
+        font-size: 1.5em;
+      }
 
       p {
         margin-top: 8px;
