@@ -8,7 +8,7 @@ class ProductSchema(Schema):
     old_price = fields.Float()
     description = fields.Str(required=True)
     category = fields.Str(required=True)
-    image_url = fields.List(fields.Str(), required=True)  # List of image URLs
+    image_url = fields.Str(required=True)
     
 
 
