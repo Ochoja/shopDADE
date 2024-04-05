@@ -16,7 +16,7 @@ const router = createRouter({
       props: true
     },
     {
-      path: '/auth/:type',
+      path: '/auth/:type/',
       name: 'auth',
       component: () => import('../views/AuthView.vue'),
       props: true

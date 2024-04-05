@@ -45,7 +45,7 @@ async function createAccount() {
         password: password.value
       }
 
-      const response = await axios.post('https://shopdade.onrender.com', formData)
+      const response = await axios.post('https://shopdade.onrender.com/register', formData)
       console.log(response)
       loading.value = false
       name.value = ''
