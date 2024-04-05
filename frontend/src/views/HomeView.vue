@@ -89,7 +89,9 @@ const products = [
         <Product v-for="product in products" :key="product.id" :product="product"></Product>
       </section>
 
-      <Button size="wide">See All</Button>
+      <div class="btn">
+        <Button size="wide">See All</Button>
+      </div>
     </section>
 
     <section class="collection">
@@ -206,6 +208,12 @@ main {
     @media screen and (max-width: 750px) {
       p {
         width: 95%;
+      }
+    }
+
+    .btn {
+      button {
+        margin: auto;
       }
     }
   }
