@@ -5,7 +5,9 @@ from models.user import User
 
 auth_bp = Blueprint('auth', __name__)
 
+
 @auth_bp.route('/register', methods=['POST'])
+@cross_origin()
 def register():
     data = request.json
     fullname = data.get('fullname')
@@ -23,10 +25,12 @@ def register():
     hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
 
     # Create a new user instance and save to the database
-    new_user = User(fullname=fullname, email=email, password=hashed_password, name=name, address=address, phone_number=phone_number)
+    new_user = User(fullname=fullname, email=email, password=hashed_password,
+                    name=name, address=address, phone_number=phone_number)
     new_user.save()
 
     return jsonify({'message': 'User created successfully'}), 201
+
 
 @auth_bp.route('/login', methods=['POST'])
 def login():
@@ -42,6 +46,7 @@ def login():
         return jsonify({'message': 'Login successful'}), 200
     else:
         return jsonify({'message': 'Invalid credentials'}), 401
+
 
 @auth_bp.route('/logout', methods=['GET', 'POST'])
 def logout():
