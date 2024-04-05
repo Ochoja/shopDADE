@@ -7,7 +7,6 @@ auth_bp = Blueprint('auth', __name__)
 
 
 @auth_bp.route('/register', methods=['POST'])
-@cross_origin()
 def register():
     data = request.json
     fullname = data.get('fullname')

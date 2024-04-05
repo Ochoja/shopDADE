@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_login import LoginManager
-from flask_cors import CORS
 from database import init_db
 from routes.auth import auth_bp
 from routes.user import user_bp
@@ -12,7 +11,6 @@ from dotenv import load_dotenv
 import os
 
 app = Flask(__name__)
-CORS(app)
 
 # Initialize the database
 load_dotenv()  # load environment variables
