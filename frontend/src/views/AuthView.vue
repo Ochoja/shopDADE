@@ -4,11 +4,6 @@ import Button from '@/components/TheButton.vue'
 import { RouterLink, useRouter } from 'vue-router'
 import axios from 'axios'
 import { Icon } from '@iconify/vue/dist/iconify.js'
-import { useUserStore } from '@/stores/user'
-import { storeToRefs } from 'pinia'
-
-const store = useUserStore()
-const { user_mail } = storeToRefs(store)
 
 const name = ref('')
 const mail = ref('')
@@ -88,7 +83,6 @@ async function login() {
       console.log(response)
       loading.value = false
       router.push('/')
-      user_mail.value = mail.value
     }
   } catch (error) {
     correctLogin.value = true
