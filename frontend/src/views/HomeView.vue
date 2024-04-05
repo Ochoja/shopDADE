@@ -182,6 +182,16 @@ main {
         }
       }
     }
+
+    @media screen and (max-width: 750px) {
+      .content {
+        width: 100%;
+
+        .text {
+          font-size: 1.5em;
+        }
+      }
+    }
   }
 
   .featured {
@@ -191,6 +201,12 @@ main {
     p {
       width: 50%;
       margin: 0 auto 8px auto;
+    }
+
+    @media screen and (max-width: 750px) {
+      p {
+        width: 95%;
+      }
     }
   }
 
@@ -215,6 +231,15 @@ main {
     height: 90vh;
     gap: 12px;
 
+    @media screen and (max-width: 750px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media screen and (max-width: 650px) {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+
     .regular,
     .long {
       background-size: cover;
@@ -236,6 +261,14 @@ main {
 
     .regular {
       grid-row: span 3;
+    }
+
+    @media screen and (max-width: 750px) {
+      .long,
+      .regular {
+        grid-row: span 3;
+        height: 10em;
+      }
     }
   }
 }
