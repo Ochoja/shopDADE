@@ -13,7 +13,7 @@ class ProductListResource(Resource):
 
     def post(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('title', type=str, required=True)
+        parser.add_argument('name', type=str, required=True)
         parser.add_argument('description', type=str)
         parser.add_argument('price', type=float, required=True)
         parser.add_argument('old_price', type=float)
@@ -22,11 +22,11 @@ class ProductListResource(Resource):
         parser.add_argument('image_url', type=str)
         args = parser.parse_args()
 
-        existing_product = Product.find_by_title(args['title'])
+        existing_product = Product.find_by_name(args['name'])
         if existing_product:
-            return {'message': 'Product with the same title already exists'}, 400
+            return {'message': 'Product with the same name already exists'}, 400
 
-        product = Product(title=args['title'], description=args['description'], price=args['price'],
+        product = Product(name=args['name'], description=args['description'], price=args['price'],
                           old_price=args.get('old_price'),
                           stock_quantity=args['stock_quantity'], category_id=args['category_id'], image_url=args['image_url'])
 
@@ -43,7 +43,7 @@ class ProductResource(Resource):
 
     def put(self, product_id):
         parser = reqparse.RequestParser()
-        parser.add_argument('title', type=str)
+        parser.add_argument('name', type=str)
         parser.add_argument('description', type=str)
         parser.add_argument('price', type=float)
         parser.add_argument('old_price', type=float)

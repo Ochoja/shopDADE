@@ -2,8 +2,8 @@ from database import mongo
 from bson.objectid import ObjectId  # Import ObjectId for generating _id
 
 class Product:
-    def __init__(self, title, price, old_price=None, description=None, stock_quantity=0, category_id=None, image_url=None):
-        self.title = title
+    def __init__(self, name, price, old_price=None, description=None, stock_quantity=0, category_id=None, image_url=None):
+        self.name = name
         self.description = description
         self.price = price
         self.old_price = old_price
@@ -14,7 +14,7 @@ class Product:
 
     def save(self):
         product_data = {
-            'title': self.title,
+            'name': self.name,
             'description': self.description,
             'price': self.price,
             'old_price': self.old_price,
@@ -44,5 +44,5 @@ class Product:
         mongo.db.products.delete_one({'_id': ObjectId(product_id)})
 
     @staticmethod
-    def find_by_title(title):
-        return mongo.db.products.find_one({'title': title})
+    def find_by_name(name):
+        return mongo.db.products.find_one({'name': name})
