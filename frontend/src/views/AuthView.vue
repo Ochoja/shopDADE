@@ -1,9 +1,14 @@
 <script setup>
 import { ref, computed, watchEffect } from 'vue'
 import Button from '@/components/TheButton.vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 import axios from 'axios'
 import { Icon } from '@iconify/vue/dist/iconify.js'
+import { useUserStore } from '@/stores/user'
+import { storeToRefs } from 'pinia'
+
+const store = useUserStore()
+const { user_mail } = storeToRefs(store)
 
 const name = ref('')
 const mail = ref('')
@@ -13,7 +18,19 @@ const match = computed(() => {
   return !(password.value == confirm_password.value)
 })
 const checkFields = ref(true)
+const checkLogin = ref(true)
 const loading = ref(false)
+const correctLogin = ref(false)
+
+const router = useRouter()
+
+watchEffect(() => {
+  if (mail.value == '' || password.value == '') {
+    checkLogin.value = true
+  } else {
+    checkLogin.value = false
+  }
+})
 
 watchEffect(() => {
   if (
@@ -34,16 +51,15 @@ defineProps({
 
 async function createAccount() {
   try {
-    console.log('Called API')
-    console.log(match.value, checkFields.value)
     if (match.value || checkFields.value) return
     else {
       loading.value = true
       const formData = {
-        name: name.value,
-        mail: mail.value,
+        fullname: name.value,
+        email: mail.value,
         password: password.value
       }
+      console.log(formData)
 
       const response = await axios.post('https://shopdade.onrender.com/register', formData)
       console.log(response)
@@ -52,8 +68,30 @@ async function createAccount() {
       password.value = ''
       confirm_password.value = ''
       mail.value = ''
+      router.push('/auth/login')
     }
   } catch (error) {
+    loading.value = false
+    console.log(error)
+  }
+}
+
+async function login() {
+  try {
+    if (checkLogin.value) return
+    else {
+      loading.value = true
+      const formData = { email: mail.value, password: password.value }
+      console.log(formData)
+
+      const response = await axios.post('https://shopdade.onrender.com/login', formData)
+      console.log(response)
+      loading.value = false
+      router.push('/')
+      user_mail.value = mail.value
+    }
+  } catch (error) {
+    correctLogin.value = true
     loading.value = false
     console.log(error)
   }
@@ -115,14 +153,25 @@ async function createAccount() {
 
         <form>
           <label for="mail">Email</label>
-          <input type="e-mail" id="mail" placeholder="Enter your email" required />
+          <input type="e-mail" id="mail" placeholder="Enter your email" v-model="mail" required />
 
           <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Enter your password" required />
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            v-model="password"
+            required
+          />
+          <div v-if="checkLogin" class="warning">Please fill the form</div>
+          <div v-if="correctLogin" class="warning">Email or Password Incorrect</div>
         </form>
 
         <div class="action">
-          <Button size="big">Create Account</Button>
+          <Button size="big" @click="login">
+            <Icon v-if="loading" class="icon" icon="eos-icons:three-dots-loading" />
+            <span v-else>Sign In</span>
+          </Button>
           <p>
             Don't have an account? <RouterLink to="/auth/register">Sign Up For Free</RouterLink>
           </p>
